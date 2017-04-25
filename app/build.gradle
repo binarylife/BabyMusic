@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'me.tatarka.retrolambda'
 android {
   compileSdkVersion 25
   buildToolsVersion "25.0.2"
@@ -12,8 +12,19 @@ android {
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
-    release {
+    debug {
+      buildConfigField "boolean", "LOG_DEBUG", "true"
       minifyEnabled false
+      useProguard false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+    }
+    release {
+      buildConfigField "boolean", "LOG_DEBUG", "false"
+      minifyEnabled true
+      useProguard true
+      //移除没用的资源文件
+      shrinkResources true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
@@ -24,7 +35,8 @@ dependencies {
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  compile 'com.android.support:appcompat-v7:25.3.1'
+  compile project(':library')
+//  compile 'com.android.support:appcompat-v7:25.3.1'
   compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
   testCompile 'junit:junit:4.12'
 }
