@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.beifeng.babymusic.R;
 
 /**
- * Created by ZHT on 2017/4/17.
+ * Created by bei on 2017/4/17.
  * 加载对话框工具类
  */
 

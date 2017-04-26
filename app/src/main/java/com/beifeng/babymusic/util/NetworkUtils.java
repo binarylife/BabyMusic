@@ -16,7 +16,7 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 /**
- * Created by ZHT on 2017/4/19.
+ * Created by bei on 2017/4/26.
  *
  * 判断网络连接工具类
  */

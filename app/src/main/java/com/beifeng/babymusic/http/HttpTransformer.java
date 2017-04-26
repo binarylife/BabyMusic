@@ -8,7 +8,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by ZHT on 2017/4/19.
+ * Created by bei on 2017/4/26.
  * 对错误进行统一处理，并对返回的数据HttpResult中获取Results
  */
 

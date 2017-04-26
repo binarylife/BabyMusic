@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 /**
- * Created by ZHT on 2017/4/20.
+ * Created by bei on 2017/4/20.
  * 图片加载
  * Glide的二次封装
  */

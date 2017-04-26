@@ -7,7 +7,7 @@ import retrofit2.http.Path;
 import rx.Observable;
 
 /**
- * Created by ZHT on 2017/4/19.
+ * Created by bei on 2017/4/26.
  * Retrofit接口，定义请求方法
  */
 

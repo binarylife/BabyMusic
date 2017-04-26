@@ -18,7 +18,7 @@ import com.beifeng.babymusic.R;
 import com.beifeng.babymusic.util.UIUtils;
 
 /**
- * Created by ZHT on 2017/4/15.
+ * Created by bei on 2017/4/15.
  * 加载状态的自定义View
  */
 

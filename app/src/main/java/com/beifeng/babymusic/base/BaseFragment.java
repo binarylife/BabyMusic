@@ -14,7 +14,7 @@ import com.beifeng.babymusic.ui.widget.NetworkStateView;
 import com.beifeng.babymusic.util.ProgressDialogUtils;
 
 /**
- * Created by ZHT on 2017/4/18.
+ * Created by bei on 2017/4/18.
  * Fragment基类
  */
 

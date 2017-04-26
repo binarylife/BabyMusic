@@ -3,7 +3,7 @@ package com.beifeng.babymusic.util;
 import android.util.Log;
 
 /**
- * Created by ZHT on 2017/4/19.
+ * Created by bei on 2017/4/26.
  *
  * Log工具类
  * 通过设置打印等级决定是否要打印Log

@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,7 +27,7 @@ import java.util.List;
 
 
 /**
- * Created by ZHT on 2017/4/17.
+ * Created by bei on 2017/4/17.
  * Activity基类
  */
 
@@ -61,7 +62,6 @@ public abstract class BaseActivity extends AppCompatActivity implements NetworkS
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             view.setFitsSystemWindows(true);
         }
-
         //加载子类Activity的布局
         initDefaultView(layoutResID);
     }
@@ -75,6 +75,16 @@ public abstract class BaseActivity extends AppCompatActivity implements NetworkS
         FrameLayout container = (FrameLayout) findViewById(R.id.fl_activity_child_container);
         View childView = LayoutInflater.from(this).inflate(layoutResId, null);
         container.addView(childView, 0);
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (mToolbar == null) {
+            throw new IllegalStateException("Layout is required to include a Toolbar with id 'toolbar'");
+        }
+        setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
     }
 
     protected abstract int getLayoutId();
@@ -261,4 +271,5 @@ public abstract class BaseActivity extends AppCompatActivity implements NetworkS
         unbinder.unbind();
         ActivityUtils.removeActivity(this);
     }
+
 }

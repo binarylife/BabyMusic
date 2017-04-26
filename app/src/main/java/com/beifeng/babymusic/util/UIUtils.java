@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import com.beifeng.babymusic.App;
 
 /**
- * Created by ZHT on 2017/4/17.
+ * Created by bei on 2017/4/17.
  * 有关UI的工具类，如获取资源(颜色，字符串，drawable等)，
  * 屏幕宽高，dp与px转换
  */

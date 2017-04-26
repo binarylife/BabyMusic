@@ -1,7 +1,7 @@
 package com.beifeng.babymusic.base;
 
 /**
- * Created by ZHT on 2017/4/18.
+ * Created by bei on 2017/4/18.
  * View的基本接口，可以定义View中共有的方法
  */
 

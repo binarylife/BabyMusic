@@ -20,52 +20,46 @@ import rx.functions.Action0;
 public class MainActivity extends BaseActivity{
 
   private static final String TAG = "main";
-  @BindView(R.id.bt_loading)
-  Button bt_loading;
-  @BindView(R.id.bt_success)
-  Button bt_success;
-  @BindView(R.id.bt_fail)
-  Button bt_fail;
 
   @Override protected int getLayoutId() {
-    return R.layout.activity_main;
+    return R.layout.activity_main_include;
   }
 
   @Override protected void afterCreate(Bundle savedInstanceState) {
 
   }
 
-  @OnClick({ R.id.bt_loading ,R.id.bt_success,R.id.bt_fail})
-  public void onViewClicked(View view) {
-    switch (view.getId()) {
-      case R.id.bt_loading:
-        HttpFactory.getHttpApiSingleton()
-            .getCategoryData("Android", 10, 1)
-            .compose(new HttpTransformer<HttpResult<List<GankEntity>>, List<GankEntity>>())
-            .doOnSubscribe(new Action0() {
-              @Override public void call() {
-                showLoadingView();
-              }
-            })
-            .subscribe(new Subscriber<List<GankEntity>>() {
-              @Override public void onCompleted() {
-                LogUtils.d(TAG, "Completed");
-                showContentView();
-              }
-
-              @Override public void onError(Throwable e) {
-                LogUtils.d(TAG, "OnError, Error is " + e.toString());
-                showErrorView();
-              }
-
-              @Override public void onNext(List<GankEntity> gankEntities) {
-
-              }
-            });
-        break;
-      case R.id.bt_success:
-        ToastUtils.showShort("成功");
-    }
-  }
+  //@OnClick({ R.id.bt_loading ,R.id.bt_success,R.id.bt_fail})
+  //public void onViewClicked(View view) {
+  //  switch (view.getId()) {
+  //    case R.id.bt_loading:
+  //      HttpFactory.getHttpApiSingleton()
+  //          .getCategoryData("Android", 10, 1)
+  //          .compose(new HttpTransformer<HttpResult<List<GankEntity>>, List<GankEntity>>())
+  //          .doOnSubscribe(new Action0() {
+  //            @Override public void call() {
+  //              showLoadingView();
+  //            }
+  //          })
+  //          .subscribe(new Subscriber<List<GankEntity>>() {
+  //            @Override public void onCompleted() {
+  //              LogUtils.d(TAG, "Completed");
+  //              showContentView();
+  //            }
+  //
+  //            @Override public void onError(Throwable e) {
+  //              LogUtils.d(TAG, "OnError, Error is " + e.toString());
+  //              showErrorView();
+  //            }
+  //
+  //            @Override public void onNext(List<GankEntity> gankEntities) {
+  //
+  //            }
+  //          });
+  //      break;
+  //    case R.id.bt_success:
+  //      ToastUtils.showShort("成功");
+  //  }
+  //}
 
 }

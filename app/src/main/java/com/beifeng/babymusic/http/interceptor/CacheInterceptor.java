@@ -8,7 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by ZHT on 2016/12/25.
+ * Created by bei on 2016/12/25.
  *
  * OkHttp缓存拦截器
  * 只能缓存get请求，不能缓存post请求

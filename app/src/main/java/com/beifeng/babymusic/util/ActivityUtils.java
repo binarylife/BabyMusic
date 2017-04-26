@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import java.util.Stack;
 
 /**
- * Created by ZHT on 2017/4/17.
+ * Created by bei on 2017/4/17.
  * Activity管理工具类(包含对Fragment的添加切换)
  */
 

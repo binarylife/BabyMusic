@@ -11,7 +11,7 @@ import android.view.Window;
 import com.beifeng.babymusic.R;
 
 /**
- * Created by ZHT on 2017/4/18.
+ * Created by bei on 2017/4/18.
  * DialogFragment基类
  * 用于显示背景透明的DialogFragment
  */

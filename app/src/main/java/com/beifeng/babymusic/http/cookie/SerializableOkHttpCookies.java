@@ -7,7 +7,7 @@ import java.io.Serializable;
 import okhttp3.Cookie;
 
 /**
- * Created by ZHT on 2017/4/19.
+ * Created by bei on 2017/4/26.
  * 序列化cookie
  */
 

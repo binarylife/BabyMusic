@@ -5,7 +5,7 @@ import android.os.Handler;
 import com.beifeng.babymusic.util.LogUtils;
 
 /**
- * Created by ZHT on 2017/4/17.
+ * Created by bei on 2017/4/17.
  * 自定义Application
  */
 

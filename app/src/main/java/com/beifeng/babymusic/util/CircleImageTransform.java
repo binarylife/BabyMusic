@@ -9,7 +9,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 /**
- * Created by ZHT on 2017/4/20.
+ * Created by bei on 2017/4/20.
  * 自定义Transform，将Glide加载的图片转换为圆形图片
  */
 

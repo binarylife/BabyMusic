@@ -1,7 +1,7 @@
 package com.beifeng.babymusic.http;
 
 /**
- * Created by ZHT on 2017/4/19.
+ * Created by bei on 2017/4/26.
  * 响应数据的"基类"，通过指定泛型获取想要的数据类型
  */
 
