@@ -11,22 +11,24 @@ import com.beifeng.babymusic.entity.GankEntity;
 import com.beifeng.babymusic.http.HttpFactory;
 import com.beifeng.babymusic.http.HttpResult;
 import com.beifeng.babymusic.http.HttpTransformer;
+import com.beifeng.babymusic.ui.widget.CirclePercentView;
 import com.beifeng.babymusic.util.LogUtils;
 import com.beifeng.babymusic.util.ToastUtils;
 import java.util.List;
 import rx.Subscriber;
 import rx.functions.Action0;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity {
 
   private static final String TAG = "main";
+  @BindView(R.id.circleView) CirclePercentView circleView;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main_include;
   }
 
   @Override protected void afterCreate(Bundle savedInstanceState) {
-
+    //circleView.setPercent(77);
   }
 
   //@OnClick({ R.id.bt_loading ,R.id.bt_success,R.id.bt_fail})
@@ -61,5 +63,4 @@ public class MainActivity extends BaseActivity{
   //      ToastUtils.showShort("成功");
   //  }
   //}
-
 }

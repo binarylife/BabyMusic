@@ -6,6 +6,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import com.beifeng.babymusic.*;
 import com.beifeng.babymusic.base.BaseActivity;
+import com.beifeng.babymusic.ui.widget.CirclePercentView;
 import com.beifeng.babymusic.util.CountDownUtils;
 import com.beifeng.babymusic.util.LogUtils;
 import java.util.Calendar;
@@ -20,6 +21,7 @@ public class SplashActivity extends BaseActivity {
   public static String TAG = "splashActivity";
   @BindView(R.id.tv_copyright) TextView tv_copyright;
   @BindView(R.id.count_down) TextView count_down;
+
 
   @Override protected int getLayoutId() {
     return R.layout.activity_splash;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="CirclePercentView">
+    <attr format="dimension" name="radius" />
+    <attr format="dimension" name="stripeWidth" /><!--进度条的宽度-->
+    <attr format="integer" name="percent" />
+    <attr format="color" name="loopColor" />
+    <attr format="color" name="cricleColor" />
+    <attr format="color" name="smallColo" />
+    <attr format="dimension" name="textSize" />
+    <attr format="color" name="textColor" />
+  </declare-styleable>
+
+</resources>
