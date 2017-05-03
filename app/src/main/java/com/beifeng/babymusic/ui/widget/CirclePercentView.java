@@ -1,5 +1,8 @@
 package com.beifeng.babymusic.ui.widget;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -9,6 +12,7 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import com.beifeng.babymusic.R;
 import com.beifeng.babymusic.util.UIUtils;
 
@@ -18,7 +22,7 @@ import com.beifeng.babymusic.util.UIUtils;
  */
 
 public class CirclePercentView extends View {
-  private int mCurPercent;
+  private float mCurPercent;
   private int smallColor;
   private int textSize;
   private int textColor;
@@ -37,6 +41,7 @@ public class CirclePercentView extends View {
   private float mEndAngle;
   private Paint smallCirclePaint;
   private Paint textPaint;
+  public static final String PROGRESS_PROPERTY = "progress";
 
   public CirclePercentView(Context context) {
     this(context, null);
@@ -124,7 +129,8 @@ public class CirclePercentView extends View {
     canvas.drawCircle(x, y, circleRadius - loopWidth, smallCirclePaint);
     ////绘制进度文字 百分比
     textPaint = new Paint();
-    String text = mCurPercent + "%";
+    int percent = (int) mCurPercent;
+    String text = percent + "%";
     textPaint.setTextSize(textSize);
     textPaint.setColor(Color.WHITE);
     float textLength = textPaint.measureText(text);//  文字的宽度
@@ -144,36 +150,48 @@ public class CirclePercentView extends View {
     //textPaint = new Paint();
   }
 
-  //外部设置百分比数
-  //public void setPercent(int percent) {
-  //  if (percent > 100) {
-  //    throw new IllegalArgumentException("percent must less than 100!");
-  //  }
-  //
-  //  setCurPercent(percent);
+  //public void setProgress(float progress) {
+  //  mCurPercent = (int) progress;
+  //  invalidate();// UI thread
+  //  // postInvalidate();//non-UI thread.
   //}
 
-  //内部设置百分比 用于动画效果
-  //private void setCurPercent(int percent) {
-  //
-  //  mCurPercent = percent;
-  //
-  //  new Thread(new Runnable() {
-  //    @Override public void run() {
-  //      int sleepTime = 1;
-  //      for (int i = 0; i < mCurPercent; i++) {
-  //        if (i % 20 == 0) {
-  //          sleepTime += 2;
-  //        }
-  //        try {
-  //          Thread.sleep(sleepTime);
-  //        } catch (InterruptedException e) {
-  //          e.printStackTrace();
-  //        }
-  //        mCurPercent = i;
-  //        CirclePercentView.this.postInvalidate();
-  //      }
-  //    }
-  //  }).start();
-  //}
+  /**
+   * 进度动画
+   */
+  public void dodo(int progress) {
+    //mCurPercent = progress;
+
+    //也可使用3.0的AnimationSet实现
+    //      AnimationSet set = new AnimationSet(true);
+    //      set.setRepeatCount(AnimationSet.INFINITE);
+    //      set.setInterpolator(new AccelerateDecelerateInterpolator());
+    //      set.start();
+    //      this.setAnimation(set);
+
+    //4.0以上，在AnimationSet基础上封装的，遗憾的是没有Repeat
+
+    ValueAnimator progressAnimation = ObjectAnimator.ofFloat(0f, progress);
+    progressAnimation.setDuration(700);// 动画执行时间
+    progressAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      @Override public void onAnimationUpdate(ValueAnimator animation) {
+        mCurPercent = (float) animation.getAnimatedValue();
+        invalidate();
+      }
+    });
+        /*
+         * AccelerateInterpolator　　　　　                  加速，开始时慢中间加速
+         * DecelerateInterpolator　　　 　　                 减速，开始时快然后减速
+         * AccelerateDecelerateInterolator　                     先加速后减速，开始结束时慢，中间加速
+         * AnticipateInterpolator　　　　　　                 反向 ，先向相反方向改变一段再加速播放
+         * AnticipateOvershootInterpolator　                 反向加超越，先向相反方向改变，再加速播放，会超出目的值然后缓慢移动至目的值
+         * BounceInterpolator　　　　　　　                        跳跃，快到目的值时值会跳跃，如目的值100，后面的值可能依次为85，77，70，80，90，100
+         * CycleIinterpolator　　　　　　　　                   循环，动画循环一定次数，值的改变为一正弦函数：Math.sin(2 *
+         * mCycles * Math.PI * input) LinearInterpolator　　　 线性，线性均匀改变
+         * OvershottInterpolator　　　　　　                  超越，最后超出目的值然后缓慢改变到目的值
+         * TimeInterpolator　　　　　　　　　                        一个接口，允许你自定义interpolator，以上几个都是实现了这个接口
+         */
+    progressAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+    progressAnimation.start();//动画同时执行,可以做多个动画
+  }
 }

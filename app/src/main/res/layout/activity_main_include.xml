@@ -34,9 +34,16 @@
         android:id="@+id/circleView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:percent="45"
+        app:percent="0"
         app:stripeWidth="5dp"
         app:textSize="15sp"
+        />
+
+    <Button
+        android:id="@+id/bt_test"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
         />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
