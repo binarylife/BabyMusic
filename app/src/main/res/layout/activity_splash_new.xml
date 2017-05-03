@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <include
+      layout="@layout/include_app_bar"
+      android:visibility="gone"
+      />
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+    <com.beifeng.babymusic.ui.widget.CirclePercentView
+        android:id="@+id/circleView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerInParent="true"
+        app:percent="0"
+        app:stripeWidth="1dp"
+        app:textSize="15sp"
+        />
+  </FrameLayout>
+  <TextView
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:background="@color/blue"
+      />
+</RelativeLayout>

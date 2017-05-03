@@ -6,7 +6,7 @@
     <attr format="integer" name="percent" />
     <attr format="color" name="loopColor" />
     <attr format="color" name="cricleColor" />
-    <attr format="color" name="smallColo" />
+    <attr format="color" name="smallColor" />
     <attr format="dimension" name="textSize" />
     <attr format="color" name="textColor" />
   </declare-styleable>

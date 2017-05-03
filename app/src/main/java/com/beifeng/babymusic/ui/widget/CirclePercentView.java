@@ -14,6 +14,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import com.beifeng.babymusic.R;
+import com.beifeng.babymusic.util.LogUtils;
 import com.beifeng.babymusic.util.UIUtils;
 
 /**
@@ -41,7 +42,10 @@ public class CirclePercentView extends View {
   private float mEndAngle;
   private Paint smallCirclePaint;
   private Paint textPaint;
+  String selfText = "5秒";//   自定义的倒计时文字
   public static final String PROGRESS_PROPERTY = "progress";
+  public static final int DEFAULT_WIDTH = 20;
+  public static final int DEFAULT_HEIGHT = 20;
 
   public CirclePercentView(Context context) {
     this(context, null);
@@ -61,16 +65,13 @@ public class CirclePercentView extends View {
         typedArray.getDimension(R.styleable.CirclePercentView_radius, UIUtils.dp2px(100));//  背景圆的半径
     loopColor = typedArray.getColor(R.styleable.CirclePercentView_loopColor, Color.BLUE);//  圆环颜色
     circleColor =
-        typedArray.getColor(R.styleable.CirclePercentView_cricleColor, Color.RED);//  圆背景颜色
+        typedArray.getColor(R.styleable.CirclePercentView_cricleColor, Color.WHITE);//  圆背景颜色
     smallColor =
-        typedArray.getColor(R.styleable.CirclePercentView_cricleColor, Color.BLACK);//  小圆 扇形扫过的背景颜色
+        typedArray.getColor(R.styleable.CirclePercentView_cricleColor, Color.WHITE);//  小圆 扇形扫过的背景颜色
     textSize =
         typedArray.getDimensionPixelOffset(R.styleable.CirclePercentView_textSize, 15);//  字体大小
-    textColor =
-        typedArray.getDimensionPixelOffset(R.styleable.CirclePercentView_cricleColor, 0);//  字体颜色
+    textColor = typedArray.getColor(R.styleable.CirclePercentView_cricleColor, 0);//  字体颜色
     mCurPercent = typedArray.getInteger(R.styleable.CirclePercentView_percent, 0);//  字体颜色
-
-    initPaint();
   }
 
   /**
@@ -78,20 +79,27 @@ public class CirclePercentView extends View {
    */
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     //获取宽高的测量模式
+
     int widthMode = MeasureSpec.getMode(widthMeasureSpec);
     int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
     //  获取测量宽高
     int width = MeasureSpec.getSize(widthMeasureSpec);
     int height = MeasureSpec.getSize(heightMeasureSpec);
-
     //  宽高都为精确测量时
     if (widthMode == MeasureSpec.EXACTLY && heightMode == MeasureSpec.EXACTLY) {
       circleRadius = width / 2;
       x = width / 2;
-      y = height / 2;
+      y = width / 2;
       mWidth = width;
-      mHeight = height;
+      mHeight = width;
+    }
+    if (widthMode == MeasureSpec.EXACTLY && heightMode == MeasureSpec.AT_MOST) {
+      circleRadius = width / 2;
+      x = width / 2;
+      y = width / 2;
+      mWidth = width;
+      mHeight = width;
     }
     //  宽高都为wrapconent测量时  由半径决定view大小
     if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
@@ -118,36 +126,26 @@ public class CirclePercentView extends View {
     //绘制扇形
     sectorPaint = new Paint();
     sectorPaint.setAntiAlias(true);
-    sectorPaint.setColor(smallColor);
+    sectorPaint.setColor(loopColor);
     rectF = new RectF(0, 0, mWidth, mHeight);
     canvas.drawArc(rectF, 270, mEndAngle, true, sectorPaint);
     //绘制小圆
     //  初始化小圆
     smallCirclePaint = new Paint();
     smallCirclePaint.setAntiAlias(true);
-    smallCirclePaint.setColor(circleColor);
+    smallCirclePaint.setColor(smallColor);
     canvas.drawCircle(x, y, circleRadius - loopWidth, smallCirclePaint);
     ////绘制进度文字 百分比
     textPaint = new Paint();
     int percent = (int) mCurPercent;
-    String text = percent + "%";
+    //String text = percent + "%";
     textPaint.setTextSize(textSize);
-    textPaint.setColor(Color.WHITE);
-    float textLength = textPaint.measureText(text);//  文字的宽度
-    canvas.drawText(text, x - textLength / 2, y, textPaint);
-  }
-
-  /**
-   * 初始化画笔
-   */
-  private void initPaint() {
-    //  初始化大圆
-
-    //  初始化并状圆
-
-    //
-    ////  初始化文字
-    //textPaint = new Paint();
+    textPaint.setAntiAlias(true);
+    textPaint.setStyle(Paint.Style.FILL);
+    //textPaint.setColor(Color.b);
+    float textLength = textPaint.measureText(selfText);//  文字的宽度
+    Paint.FontMetricsInt fm = textPaint.getFontMetricsInt();
+    canvas.drawText(selfText, x - textLength / 2, y + (fm.bottom - fm.top) / 4, textPaint);
   }
 
   //public void setProgress(float progress) {
@@ -172,7 +170,7 @@ public class CirclePercentView extends View {
     //4.0以上，在AnimationSet基础上封装的，遗憾的是没有Repeat
 
     ValueAnimator progressAnimation = ObjectAnimator.ofFloat(0f, progress);
-    progressAnimation.setDuration(700);// 动画执行时间
+    progressAnimation.setDuration(5000);// 动画执行时间
     progressAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
       @Override public void onAnimationUpdate(ValueAnimator animation) {
         mCurPercent = (float) animation.getAnimatedValue();
@@ -193,5 +191,23 @@ public class CirclePercentView extends View {
          */
     progressAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
     progressAnimation.start();//动画同时执行,可以做多个动画
+  }
+
+  public void setSelfText(String text) {
+    selfText = text;
+  }
+
+  private int measureHanlder(int measureSpec) {
+    int result = DEFAULT_WIDTH;
+    int specMode = MeasureSpec.getMode(measureSpec);
+    int specSize = MeasureSpec.getSize(measureSpec);
+    if (specMode == MeasureSpec.EXACTLY) {
+      result = specSize;
+    } else if (specMode == MeasureSpec.AT_MOST) {
+      result = Math.min(DEFAULT_WIDTH, specSize);
+    } else {
+      result = DEFAULT_WIDTH;
+    }
+    return result;
   }
 }

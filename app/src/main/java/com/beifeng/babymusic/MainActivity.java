@@ -22,18 +22,18 @@ public class MainActivity extends BaseActivity {
 
   private static final String TAG = "main";
   @BindView(R.id.circleView) CirclePercentView circleView;
-  @BindView(R.id.bt_test) Button bt_test;
+  //@BindView(R.id.bt_test) Button bt_test;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main_include;
   }
 
   @Override protected void afterCreate(Bundle savedInstanceState) {
-
+    circleView.dodo(80);
   }
 
-  @OnClick({ R.id.bt_test }) public void onViewClicked(View view) {
-    switch (view.getId()) {
+  //@OnClick({ R.id.bt_test }) public void onViewClicked(View view) {
+  //  switch (view.getId()) {
       //case R.id.bt_loading:
       //  HttpFactory.getHttpApiSingleton()
       //      .getCategoryData("Android", 10, 1)
@@ -59,8 +59,8 @@ public class MainActivity extends BaseActivity {
       //        }
       //      });
       //  break;
-      case R.id.bt_test:
-        circleView.dodo(90);
-    }
-  }
+    //  case R.id.bt_test:
+    //    circleView.dodo(90);
+    //}
+  //}
 }

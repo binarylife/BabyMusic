@@ -20,8 +20,8 @@ public class SplashActivity extends BaseActivity {
 
   public static String TAG = "splashActivity";
   @BindView(R.id.tv_copyright) TextView tv_copyright;
-  @BindView(R.id.count_down) TextView count_down;
-
+  //@BindView(R.id.count_down) TextView count_down;
+  @BindView(R.id.circleView) CirclePercentView circleView;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_splash;
@@ -30,12 +30,12 @@ public class SplashActivity extends BaseActivity {
   @Override protected void afterCreate(Bundle savedInstanceState) {
     int year = Calendar.getInstance().get(Calendar.YEAR);
     tv_copyright.setText(getString(R.string.copyright, year));
-
     //  开启广告倒计时
     CountDownUtils.countDown(5).doOnSubscribe(new Action0() {
       @Override public void call() {
         // 初始化工作
         LogUtils.e(TAG, "倒计时开始");
+        circleView.dodo(100);
       }
     }).subscribe(new Subscriber<Integer>() {
       @Override public void onCompleted() {
@@ -49,7 +49,7 @@ public class SplashActivity extends BaseActivity {
 
       @Override public void onNext(Integer integer) {
         LogUtils.e(TAG, "当前时间" + integer);
-        count_down.setText(integer+"秒");
+        circleView.setSelfText(integer + "秒");
       }
     });
   }

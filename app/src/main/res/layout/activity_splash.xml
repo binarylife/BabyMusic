@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,28 +10,30 @@
       layout="@layout/include_app_bar"
       android:visibility="gone"
       />
+
   <TextView
       android:id="@+id/count_down"
       android:layout_width="30dp"
       android:layout_height="30dp"
       android:layout_alignParentRight="true"
       android:layout_margin="30dp"
-      tools:text="2"
-      android:gravity="center"
-      style="@style/AppTheme.Text"
       android:background="@drawable/text_count_down_bg"
+      android:gravity="center"
+      android:visibility="gone"
+      tools:text="2"
+      style="@style/AppTheme.Text"
       />
 
-  <ImageView
-      android:id="@+id/iv_splash"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_above="@+id/bottom_view"
-      android:layout_weight="1"
-      android:contentDescription="@null"
-      android:scaleType="centerCrop"
+  <com.beifeng.babymusic.ui.widget.CirclePercentView
+      android:id="@+id/circleView"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_alignParentRight="true"
+      android:layout_margin="20dp"
+      app:percent="0"
+      app:stripeWidth="1dp"
+      app:textSize="15sp"
       />
-
   <LinearLayout
       android:id="@+id/bottom_view"
       android:layout_width="match_parent"
