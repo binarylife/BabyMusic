@@ -33,17 +33,6 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        />
-    <com.beifeng.babymusic.ui.widget.CirclePercentView
-        android:id="@+id/circleView"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="30dp"
-        android:layout_alignParentRight="true"
-        app:stripeWidth="1dp"
-        app:textSize="15sp"
-        app:percent="0"
         />
     <include
         layout="@layout/include_play_bar"

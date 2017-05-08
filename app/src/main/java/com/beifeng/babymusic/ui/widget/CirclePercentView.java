@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import com.beifeng.babymusic.R;
 import com.beifeng.babymusic.util.LogUtils;
 import com.beifeng.babymusic.util.UIUtils;
@@ -142,32 +143,16 @@ public class CirclePercentView extends View {
     textPaint.setTextSize(textSize);
     textPaint.setAntiAlias(true);
     textPaint.setStyle(Paint.Style.FILL);
-    //textPaint.setColor(Color.b);
     float textLength = textPaint.measureText(selfText);//  文字的宽度
     Paint.FontMetricsInt fm = textPaint.getFontMetricsInt();
     canvas.drawText(selfText, x - textLength / 2, y + (fm.bottom - fm.top) / 4, textPaint);
   }
 
-  //public void setProgress(float progress) {
-  //  mCurPercent = (int) progress;
-  //  invalidate();// UI thread
-  //  // postInvalidate();//non-UI thread.
-  //}
 
   /**
    * 进度动画
    */
   public void dodo(int progress) {
-    //mCurPercent = progress;
-
-    //也可使用3.0的AnimationSet实现
-    //      AnimationSet set = new AnimationSet(true);
-    //      set.setRepeatCount(AnimationSet.INFINITE);
-    //      set.setInterpolator(new AccelerateDecelerateInterpolator());
-    //      set.start();
-    //      this.setAnimation(set);
-
-    //4.0以上，在AnimationSet基础上封装的，遗憾的是没有Repeat
 
     ValueAnimator progressAnimation = ObjectAnimator.ofFloat(0f, progress);
     progressAnimation.setDuration(5000);// 动画执行时间
@@ -189,25 +174,11 @@ public class CirclePercentView extends View {
          * OvershottInterpolator　　　　　　                  超越，最后超出目的值然后缓慢改变到目的值
          * TimeInterpolator　　　　　　　　　                        一个接口，允许你自定义interpolator，以上几个都是实现了这个接口
          */
-    progressAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+    progressAnimation.setInterpolator(new LinearInterpolator());
     progressAnimation.start();//动画同时执行,可以做多个动画
   }
 
   public void setSelfText(String text) {
     selfText = text;
-  }
-
-  private int measureHanlder(int measureSpec) {
-    int result = DEFAULT_WIDTH;
-    int specMode = MeasureSpec.getMode(measureSpec);
-    int specSize = MeasureSpec.getSize(measureSpec);
-    if (specMode == MeasureSpec.EXACTLY) {
-      result = specSize;
-    } else if (specMode == MeasureSpec.AT_MOST) {
-      result = Math.min(DEFAULT_WIDTH, specSize);
-    } else {
-      result = DEFAULT_WIDTH;
-    }
-    return result;
   }
 }
