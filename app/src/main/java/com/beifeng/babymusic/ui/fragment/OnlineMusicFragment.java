@@ -24,6 +24,11 @@ public class OnlineMusicFragment extends BaseFragment implements HomeContract.Ho
 
   }
 
+  @Override public void onResume() {
+    super.onResume();
+    presenter.subscribe();
+  }
+
   @Override public void setPresenter(HomeContract.Presenter presenter) {
     this.presenter = presenter;
   }
@@ -41,6 +46,6 @@ public class OnlineMusicFragment extends BaseFragment implements HomeContract.Ho
   }
 
   @Override public void displayData() {
-    presenter.loadData();
+
   }
 }

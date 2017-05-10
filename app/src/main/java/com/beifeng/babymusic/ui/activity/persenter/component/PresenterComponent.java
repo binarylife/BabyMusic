@@ -1,8 +1,6 @@
 package com.beifeng.babymusic.ui.activity.persenter.component;
 
 import com.beifeng.babymusic.ApplicationModule;
-import com.beifeng.babymusic.MainActivity;
-import com.beifeng.babymusic.ui.activity.persenter.HomePagePresenter;
 import com.beifeng.babymusic.ui.activity.persenter.HomePresenter;
 import dagger.Component;
 
@@ -13,7 +11,7 @@ import dagger.Component;
 @Component(modules = ApplicationModule.class)
 public interface PresenterComponent {
 
-    void inject(HomePagePresenter presenter);
+    void inject(HomePresenter presenter);
 
     //void inject(MainActivity activity);
     //

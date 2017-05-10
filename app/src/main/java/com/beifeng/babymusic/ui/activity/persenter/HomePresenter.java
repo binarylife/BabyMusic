@@ -32,10 +32,10 @@ import rx.subscriptions.CompositeSubscription;
     this.view = view;
     subscription = new CompositeSubscription();
     view.setPresenter(this);
-    //DaggerPresenterComponent.builder()
-    //    .applicationModule(new ApplicationModule(context))
-    //    .build()
-    //    .inject(this);
+    DaggerPresenterComponent.builder()
+        .applicationModule(new ApplicationModule(context))
+        .build()
+        .inject(this);
   }
 
   @Override public void loadData() {
