@@ -1,7 +1,7 @@
 package com.beifeng.babymusic.util;
 
 import android.widget.Toast;
-import com.beifeng.babymusic.App;
+import com.beifeng.babymusic.BabyApplication;
 
 public class ToastUtils {
 
@@ -9,7 +9,7 @@ public class ToastUtils {
 
 	public static void showLong(String text) {
 		if (mToast == null) {
-			mToast = Toast.makeText(App.getApplication(), text, Toast.LENGTH_LONG);
+			mToast = Toast.makeText(BabyApplication.getApplication(), text, Toast.LENGTH_LONG);
 		} else {
 			mToast.setText(text);
 		}
@@ -18,7 +18,7 @@ public class ToastUtils {
 
 	public static void showShort(String text) {
 		if (mToast == null) {
-			mToast = Toast.makeText(App.getApplication(), text, Toast.LENGTH_SHORT);
+			mToast = Toast.makeText(BabyApplication.getApplication(), text, Toast.LENGTH_SHORT);
 		} else {
 			mToast.setText(text);
 		}

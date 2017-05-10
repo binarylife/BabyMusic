@@ -5,27 +5,19 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.beifeng.babymusic.adapter.FragmentAdapter;
 import com.beifeng.babymusic.base.BaseActivity;
-import com.beifeng.babymusic.entity.GankEntity;
-import com.beifeng.babymusic.http.HttpFactory;
-import com.beifeng.babymusic.http.HttpResult;
-import com.beifeng.babymusic.http.HttpTransformer;
-import com.beifeng.babymusic.ui.LocalMusicFragment;
+import com.beifeng.babymusic.ui.activity.component.DaggerHomeComponent;
+import com.beifeng.babymusic.ui.activity.module.HomeModule;
+import com.beifeng.babymusic.ui.activity.persenter.HomePresenter;
+import com.beifeng.babymusic.ui.fragment.LocalMusicFragment;
 import com.beifeng.babymusic.ui.fragment.OnlineMusicFragment;
-import com.beifeng.babymusic.ui.widget.CirclePercentView;
-import com.beifeng.babymusic.util.LogUtils;
-import com.beifeng.babymusic.util.ToastUtils;
-import java.util.List;
-import rx.Subscriber;
-import rx.functions.Action0;
+import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
 
@@ -39,6 +31,8 @@ public class MainActivity extends BaseActivity {
   @BindView(R.id.viewpager) ViewPager mViewPager;
   private LocalMusicFragment localMusicFragment;
   private OnlineMusicFragment onlineMusicFragment;
+
+  @Inject HomePresenter homePersenter;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main;
@@ -72,6 +66,12 @@ public class MainActivity extends BaseActivity {
       }
     });
     tvLocalMusic.setSelected(true);
+
+    DaggerHomeComponent.builder()
+        .applicationComponent(BabyApplication.getApplication().getApplicationComponent())
+        .homeModule(new HomeModule(onlineMusicFragment))
+        .build()
+        .inject(this);
 
   }
 

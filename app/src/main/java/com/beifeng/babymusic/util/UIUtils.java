@@ -8,7 +8,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
-import com.beifeng.babymusic.App;
+import com.beifeng.babymusic.BabyApplication;
 
 /**
  * Created by bei on 2017/4/17.
@@ -19,7 +19,7 @@ import com.beifeng.babymusic.App;
 public class UIUtils {
 
     private static Context getContext() {
-        return App.getApplication();
+        return BabyApplication.getApplication();
     }
 
     private static Resources getResources() {

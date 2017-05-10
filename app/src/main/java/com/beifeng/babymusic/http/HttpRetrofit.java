@@ -1,6 +1,6 @@
 package com.beifeng.babymusic.http;
 
-import com.beifeng.babymusic.App;
+import com.beifeng.babymusic.BabyApplication;
 import com.beifeng.babymusic.http.cookie.CookieManager;
 import com.beifeng.babymusic.http.interceptor.CacheInterceptor;
 import com.beifeng.babymusic.http.interceptor.LoggingInterceptor;
@@ -32,7 +32,7 @@ public class HttpRetrofit {
 
     HttpRetrofit() {
 
-        File cacheDir = new File(App.getApplication().getCacheDir(), "http");
+        File cacheDir = new File(BabyApplication.getApplication().getCacheDir(), "http");
         Cache cache = new Cache(cacheDir, 10 * 1024 * 1024);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -43,7 +43,7 @@ public class HttpRetrofit {
         builder.addInterceptor(new CacheInterceptor());
         builder.addInterceptor(new LoggingInterceptor());
         builder.cache(cache);
-        builder.cookieJar(new CookieManager(App.getApplication()));
+        builder.cookieJar(new CookieManager(BabyApplication.getApplication()));
         OkHttpClient client = builder.build();
 
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder();

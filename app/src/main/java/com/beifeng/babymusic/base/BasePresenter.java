@@ -7,7 +7,7 @@ package com.beifeng.babymusic.base;
 
 public interface BasePresenter {
 
-    void attachView(BaseView view);
+    void subscribe();
 
-    void detachView();
+    void unSubscribe();
 }

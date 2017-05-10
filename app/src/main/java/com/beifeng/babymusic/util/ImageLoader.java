@@ -2,7 +2,7 @@ package com.beifeng.babymusic.util;
 
 import android.content.Context;
 import android.widget.ImageView;
-import com.beifeng.babymusic.App;
+import com.beifeng.babymusic.BabyApplication;
 import com.beifeng.babymusic.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -21,7 +21,7 @@ public class ImageLoader {
      * @return
      */
     private static Context getGlobalContext() {
-        return App.getApplication();
+        return BabyApplication.getApplication();
     }
 
     /**

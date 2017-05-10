@@ -8,7 +8,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.telephony.TelephonyManager;
-import com.beifeng.babymusic.App;
+import com.beifeng.babymusic.BabyApplication;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -81,7 +81,7 @@ public class NetworkUtils {
 	 *         {@code false}: 否
 	 */
 	public static boolean isConnected() {
-		NetworkInfo info = getActiveNetworkInfo(App.getApplication());
+		NetworkInfo info = getActiveNetworkInfo(BabyApplication.getApplication());
 		return info != null && info.isConnected();
 	}
 

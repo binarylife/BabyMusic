@@ -60,6 +60,9 @@ dependencies {
   annotationProcessor rootProject.ext.dependencies.getAt("butterknife-compiler")
   compile rootProject.ext.dependencies.getAt("glide")
   compile rootProject.ext.dependencies.getAt("gson")
+  compile rootProject.ext.dependencies.getAt("dagger")
+  annotationProcessor rootProject.ext.dependencies.getAt("dagger-compiler")
   compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
   testCompile 'junit:junit:4.12'
+  compile 'javax.annotation:javax.annotation-api:1.2'
 }
